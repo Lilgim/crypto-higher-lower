@@ -137,7 +137,6 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Zap className="size-5 text-violet-400" />
             <span className="font-bold text-sm tracking-tight">Higher Lower</span>
-            <span className="text-[10px] text-violet-400/60 bg-violet-500/10 px-1.5 py-0.5 rounded-full font-medium">CRYPTO</span>
           </div>
           <div className="flex items-center gap-4">
             {streak >= 3 && (
@@ -266,8 +265,11 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 glass border-t border-violet-500/10 text-center py-2 px-4">
-        <span className="text-[11px] text-gray-600">Top 100 cryptos by market cap • CoinGecko • Prices refresh every 5min</span>
+      <footer className="relative z-10 glass border-t border-violet-500/10 text-center py-2.5 px-4 flex items-center justify-center gap-2">
+        <span className="text-[11px] text-gray-600">Powered by</span>
+        <a href="https://venalabs.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-violet-400/70 hover:text-violet-400 font-semibold transition-colors">VenaLabs</a>
+        <span className="text-[11px] text-gray-700">×</span>
+        <a href="https://kraken.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-violet-400/70 hover:text-violet-400 font-semibold transition-colors">Kraken</a>
       </footer>
     </main>
   )
