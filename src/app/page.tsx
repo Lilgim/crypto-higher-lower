@@ -31,6 +31,7 @@ export default function Home() {
   const [state, setState] = useState<GameState>("loading")
   const [showMcap, setShowMcap] = useState(false)
   const [streak, setStreak] = useState(0)
+  const [lives, setLives] = useState(3)
 
   useEffect(() => {
     const saved = localStorage.getItem("hl-highscore")
@@ -77,12 +78,30 @@ export default function Home() {
     } else {
       setState("wrong")
       setStreak(0)
+      const newLives = lives - 1
+      setLives(newLives)
+
+      if (newLives <= 0) {
+        // Game over — stay on wrong state
+        return
+      }
+
+      // Continue playing after showing the answer
+      setTimeout(() => {
+        setShowMcap(false)
+        setLeft(right)
+        const pool = coins.filter(c => c.id !== right.id)
+        const next = pool[Math.floor(Math.random() * pool.length)]
+        setRight(next)
+        setState("playing")
+      }, 1200)
     }
-  }, [left, right, state, score, highScore, coins])
+  }, [left, right, state, score, highScore, coins, lives])
 
   const restart = () => {
     setScore(0)
     setStreak(0)
+    setLives(3)
     setShowMcap(false)
     const i = Math.floor(Math.random() * coins.length)
     let j = Math.floor(Math.random() * (coins.length - 1))
@@ -126,6 +145,11 @@ export default function Home() {
                 🔥 {streak} streak
               </span>
             )}
+            <div className="flex items-center gap-1 text-sm">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <span key={i} className={`transition-opacity ${i < lives ? "opacity-100" : "opacity-20"}`}>❤️</span>
+              ))}
+            </div>
             <div className="flex items-center gap-1.5 text-xs">
               <Trophy className="size-3.5 text-yellow-500" />
               <span className="text-yellow-500/80 font-semibold">{highScore}</span>
@@ -220,11 +244,11 @@ export default function Home() {
               </div>
             )}
 
-            {/* Game over */}
-            {state === "wrong" && (
+            {/* Game over — 0 lives */}
+            {state === "wrong" && lives <= 0 && (
               <div className="flex flex-col items-center gap-4 mt-2 animate-slide-up">
                 <div className="text-center">
-                  <div className="text-red-400 font-bold text-lg">Wrong! 💀</div>
+                  <div className="text-red-400 font-bold text-lg">Game Over 💀</div>
                   <div className="text-gray-500 text-sm mt-1">
                     Final score: <span className="text-white font-bold">{score}</span>
                   </div>
