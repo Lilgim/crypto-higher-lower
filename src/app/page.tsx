@@ -169,7 +169,6 @@ export default function Home() {
             </div>
             <div className="text-center">
               <h2 className="text-xl font-bold">{left.name}</h2>
-              <span className="text-violet-400/60 text-sm font-medium">{left.symbol}</span>
             </div>
             <div className="glass-strong rounded-2xl px-5 py-2.5 text-center">
               <div className="text-xl font-bold text-violet-300">{formatMcap(left.marketCap)}</div>
@@ -211,7 +210,6 @@ export default function Home() {
             </div>
             <div className="text-center">
               <h2 className="text-xl font-bold">{right.name}</h2>
-              <span className="text-violet-400/60 text-sm font-medium">{right.symbol}</span>
             </div>
 
             {showMcap ? (
