@@ -161,14 +161,14 @@ export default function Home() {
       {/* Game area */}
       <div className="flex-1 flex flex-col md:flex-row relative z-10">
         {/* Left — known coin */}
-        <div className="flex-1 flex flex-col items-center justify-center p-8 gradient-purple">
-          <div className="flex flex-col items-center gap-4 animate-slide-up">
+        <div className="flex-1 flex flex-col items-center justify-center p-5 gradient-purple">
+          <div className="flex flex-col items-center gap-2.5 animate-slide-up">
             <div className="relative">
               <div className="absolute inset-0 bg-violet-500/20 rounded-full blur-xl scale-125" />
-              <img src={left.image} alt={left.name} className="relative size-24 rounded-full ring-2 ring-violet-500/20" />
+              <img src={left.image} alt={left.name} className="relative size-16 rounded-full ring-2 ring-violet-500/20" />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold">{left.name}</h2>
+              <h2 className="text-xl font-bold">{left.name}</h2>
               <span className="text-violet-400/60 text-sm font-medium">{left.symbol}</span>
             </div>
             <div className="glass-strong rounded-2xl px-5 py-2.5 text-center">
@@ -191,26 +191,26 @@ export default function Home() {
         </div>
 
         {/* Right — guess coin */}
-        <div className={`flex-1 flex flex-col items-center justify-center p-8 transition-all duration-500 ${
+        <div className={`flex-1 flex flex-col items-center justify-center p-5 transition-all duration-500 ${
           state === "correct" ? "gradient-green animate-pulse-glow" :
           state === "wrong" ? "gradient-red animate-shake" :
           "gradient-purple"
         }`}>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-2.5">
             <div className="relative">
               <div className={`absolute inset-0 rounded-full blur-xl scale-125 transition-colors duration-500 ${
                 state === "correct" ? "bg-green-500/20" :
                 state === "wrong" ? "bg-red-500/20" :
                 "bg-violet-500/20"
               }`} />
-              <img src={right.image} alt={right.name} className={`relative size-24 rounded-full ring-2 transition-colors duration-500 ${
+              <img src={right.image} alt={right.name} className={`relative size-16 rounded-full ring-2 transition-colors duration-500 ${
                 state === "correct" ? "ring-green-500/30" :
                 state === "wrong" ? "ring-red-500/30" :
                 "ring-violet-500/20"
               }`} />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold">{right.name}</h2>
+              <h2 className="text-xl font-bold">{right.name}</h2>
               <span className="text-violet-400/60 text-sm font-medium">{right.symbol}</span>
             </div>
 
@@ -227,7 +227,7 @@ export default function Home() {
 
             {/* Action buttons */}
             {state === "playing" && (
-              <div className="flex gap-3 mt-2 animate-slide-up">
+              <div className="flex gap-3 mt-1 animate-slide-up">
                 <button
                   onClick={() => handleGuess("higher")}
                   className="flex items-center gap-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 hover:border-green-500/40 text-green-400 font-bold rounded-xl px-6 py-3 transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]"
@@ -245,7 +245,7 @@ export default function Home() {
 
             {/* Game over — 0 lives */}
             {state === "wrong" && lives <= 0 && (
-              <div className="flex flex-col items-center gap-4 mt-2 animate-slide-up">
+              <div className="flex flex-col items-center gap-3 mt-1 animate-slide-up">
                 <div className="text-center">
                   <div className="text-red-400 font-bold text-lg">Game Over 💀</div>
                   <div className="text-gray-500 text-sm mt-1">
